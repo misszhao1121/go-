@@ -3,6 +3,6 @@ package main
 import "godevops/test"
 
 func main() {
-	test.TestAutoMigrate()
-
+	//test.TestAutoMigrate()
+	test.TestDdl()
 }

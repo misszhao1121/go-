@@ -39,3 +39,31 @@ func TestAutoMigrate() {
 	}
 	fmt.Println("创建表结构完成!")
 }
+
+func TestDdl() {
+	host := "162.14.100.125"
+	use, pass, port, database := "root", "zhaoCHENG11.", "13306", "zc"
+	db, err := ConnectMysqlByDefault(host, port, use, pass, database)
+	// 单个插入创建
+	if err != nil {
+		//println("连接失败", err)
+		panic("连接失败,error=" + err.Error())
+	}
+	db.Create(&models.UserBasic{Name: "zhangsan", Password: "thisispassword"})
+
+	users := []models.UserBasic{
+		{Name: "lisi", Password: "333"},
+		{Name: "wangwu", Password: "444"},
+	}
+
+	// 多个插入并演示返回值
+	result := db.Create(users)
+	if result != nil {
+		fmt.Println(result.RowsAffected)
+		fmt.Println(result.Error)
+	}
+	//根据主键ID查询主键值为1的记录并返回数据
+	var name = models.UserBasic{}
+	db.First(&name, 2)
+	fmt.Println(name)
+}
