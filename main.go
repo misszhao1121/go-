@@ -1,8 +1,9 @@
 package main
 
-import "godevops/test"
+import "godevops/models"
 
 func main() {
 	//test.TestAutoMigrate()
-	test.TestDdl()
+	//test.TestDdl()
+	models.LoginInit()
 }

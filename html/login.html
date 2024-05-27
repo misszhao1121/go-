@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<form action="/login" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <img src="/captcha/" alt="Captcha" onclick="this.src='/captcha/' + Math.random()">
+    <input type="hidden" name="captcha_id" value="{{.CaptchaID}}"> <!-- 假设你有一个方式将CaptchaID传递给模板 -->
+    <br><br>
+
+    <input type="text" id="captcha_value" name="captcha_value" required placeholder="Captcha Value"><br><br>
+
+    <input type="submit" value="Login">
+</form>
+</body>
+</html>
